@@ -1,13 +1,13 @@
 # Stage 1: Build the React application
-FROM node:20-alpine AS builder
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
 # Copy package files first for layer caching
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 # Install all dependencies (including devDependencies needed for build)
-RUN npm ci
+RUN npm install
 
 # Copy the rest of the source code
 COPY . .
