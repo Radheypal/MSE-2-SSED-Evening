@@ -7,10 +7,10 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 # Copy package files first for layer caching
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 # Install only production dependencies
-RUN npm ci --omit=dev
+RUN npm install --omit=dev
 
 # Copy only the application source (no tests, no docs, no unnecessary files)
 COPY src ./src
